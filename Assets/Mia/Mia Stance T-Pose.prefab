@@ -1381,7 +1381,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2235286593699706574}
   - component: {fileID: 5324795745932684468}
-  - component: {fileID: -688080347801606443}
   m_Layer: 0
   m_Name: Mia Stance T-Pose
   m_TagString: Untagged
@@ -1427,22 +1426,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-688080347801606443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1463254249643814004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bee378e7924e2e46b86c44ed4704015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aTriggers:
-  - Talk A
-  - Talk B
-  - Talk C
 --- !u!1 &1494440940830940827
 GameObject:
   m_ObjectHideFlags: 0
