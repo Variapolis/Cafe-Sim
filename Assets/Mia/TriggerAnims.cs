@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TriggerAnims : MonoBehaviour
+public sealed class TriggerAnims : MonoBehaviour
 {
     [SerializeField] private Animator anim;
     [SerializeField] private ScrollRect scrollRect;
