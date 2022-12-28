@@ -3,22 +3,39 @@ using UnityEngine.InputSystem;
 
 public class InteractionCaster : MonoBehaviour
 {
-    [SerializeField] private Camera camera;
-    private StarterAssetsInputGenerated playerControls;
-    private InputAction interact;
+    [SerializeField] private Camera interactionCamera;
+    [SerializeField] private Transform itemHolder;
+    private GameObject _heldItem; // BUG: Cannot track when item is detached externally. Possibly make this an interface that is held as a variable in pickups.
+    private StarterAssetsInputGenerated _playerControls;
+    private InputAction _interact;
+
     private void Start()
     {
-        playerControls = new StarterAssetsInputGenerated();
-        interact = playerControls.Player.Interact;
-        interact.Enable();
-        interact.performed += Interact;
+        _playerControls = new StarterAssetsInputGenerated();
+        _interact = _playerControls.Player.Interact;
+        _interact.Enable();
+        _interact.performed += Interact;
     }
 
     void Interact(InputAction.CallbackContext context)
     {
-        var cameraTransform = camera.transform;
-        if(!Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit, 5f)) return;
-        if (!hit.collider.TryGetComponent<IInteractable>(out var interactible)) return;
-        interactible.Interact();
+        var cameraTransform = interactionCamera.transform;
+        if (!Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit, 5f)) return;
+        
+        
+        if (_heldItem && hit.collider.attachedRigidbody.TryGetComponent<IItemInteractable>(out var itemInteractable) && itemInteractable.InteractWithItem(_heldItem))
+        {
+            _heldItem = null;
+            return;
+        }
+        
+        if (!_heldItem &&hit.collider.attachedRigidbody.TryGetComponent<IPickup>(out var pickup))
+        {
+            pickup.Pickup(itemHolder);
+            _heldItem = hit.collider.attachedRigidbody.gameObject;
+            return;
+        }
+        
+        if (hit.collider.attachedRigidbody.TryGetComponent<IInteractable>(out var interactible)) interactible.Interact();
     }
 }

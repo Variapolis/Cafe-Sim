@@ -3,5 +3,5 @@ using System.Collections.Generic;
 
 public interface IInteractable
 {
-    public void Interact();
+    public bool Interact();
 }
