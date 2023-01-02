@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Cafe.CookingSystem
@@ -9,10 +9,13 @@ namespace Cafe.CookingSystem
         [SerializeField] private Vector3 attachmentOffset;
         [SerializeField] private Ingredient[] whitelist;
         [SerializeField] private Rigidbody _rigidbody;
+        public string tempName;
         private Vector3 AttachmentPoint => transform.position + attachmentOffset;
         private List<Ingredient> _ingredients;
         private Ingredient _parent;
         private Ingredient _child;
+
+        public bool HasParentOrChild => _parent || _child;
 
         private void AttachTo(Ingredient ingredient)
         {
@@ -49,15 +52,24 @@ namespace Cafe.CookingSystem
 
         public void Drop()
         {
-            throw new System.NotImplementedException();
+            transform.parent = null;
+            _rigidbody.isKinematic = false;
+            _rigidbody.detectCollisions = true;
+        }
+
+        public void Drop(Vector3 position)
+        {
+            transform.parent = null;
+            _rigidbody.isKinematic = false;
+            _rigidbody.detectCollisions = true;
+            transform.position = position;
         }
 
         private bool IsIngredientInWhitelist(Ingredient ingredientToCheck)
         {
             foreach (var ingredient in whitelist)
-                if (ingredient.name == ingredientToCheck.name)
+                if (ingredient.tempName == ingredientToCheck.tempName)
                     return true;
-
             return false;
         }
 
