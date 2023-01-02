@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lettuce
       objectReference: {fileID: 0}
+    - target: {fileID: 5999828497797140241, guid: d9bf9b797627bbb40a643b3c6fc502c4, type: 3}
+      propertyPath: tempName
+      value: Lettuce
+      objectReference: {fileID: 0}
     - target: {fileID: 5999828497797140246, guid: d9bf9b797627bbb40a643b3c6fc502c4, type: 3}
       propertyPath: m_RootOrder
       value: 7
