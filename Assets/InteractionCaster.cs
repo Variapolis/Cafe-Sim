@@ -11,26 +11,42 @@ public class InteractionCaster : MonoBehaviour
 
     private StarterAssetsInputGenerated _playerControls;
     private InputAction _interact;
-    private InputAction _drop;
+    private InputAction _pickup;
 
     private void Start()
     {
         _playerControls = new StarterAssetsInputGenerated();
         _interact = _playerControls.Player.Interact;
-        _drop = _playerControls.Player.Drop;
+        _pickup = _playerControls.Player.Pickup;
         _interact.Enable();
-        _drop.Enable();
+        _pickup.Enable();
         _interact.performed += Interact;
-        _drop.performed += Drop;
+        _pickup.performed += OnPickup;
     }
 
-    private void Drop(InputAction.CallbackContext obj)
+    private void OnPickup(InputAction.CallbackContext obj)
     {
-        if (!_heldItem) return;
+        if (_heldItem) DropItem();
+        else PickupItem();
+    }
+
+    private void PickupItem()
+    {
+        if (_heldItem) return;
+        var cameraTransform = interactionCamera.transform;
+        if (!Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit, 5f)) return;
+        var rb = hit.collider.attachedRigidbody;
+        if (!rb || !rb.TryGetComponent<IPickup>(out var pickup)) return;
+        pickup.Pickup(itemHolder);
+        _heldItem = rb.gameObject;
+    }
+
+    private void DropItem()
+    {
         var cameraTransform = interactionCamera.transform;
         var heldPickup = _heldItem.GetComponent<IPickup>();
         if (!Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit, 5f) ||
-            !(Vector3.Angle(hit.normal, Vector3.up) < 70f)) return; // Stops items being placed on vertical walls
+            !(Vector3.Angle(hit.normal, Vector3.up) < 70f)) return;
         heldPickup.Drop(hit.point + new Vector3(0f, _heldItem.GetComponentInChildren<Collider>().bounds.extents.y, 0f));
         heldPickup.Drop();
         _heldItem = null;
@@ -46,13 +62,6 @@ public class InteractionCaster : MonoBehaviour
             itemInteractable.InteractWithItem(_heldItem))
         {
             _heldItem = null;
-            return;
-        }
-
-        if (!_heldItem && hit.collider.attachedRigidbody.TryGetComponent<IPickup>(out var pickup))
-        {
-            pickup.Pickup(itemHolder);
-            _heldItem = hit.collider.attachedRigidbody.gameObject;
             return;
         }
 

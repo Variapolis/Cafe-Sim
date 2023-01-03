@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Drop",
+                    "name": "Pickup",
                     "type": "Button",
                     "id": "2940bdf5-a7d9-446f-b0af-a8a0c7df3d25",
                     "expectedControlType": "Button",
@@ -240,7 +240,7 @@
                 {
                     "name": "",
                     "id": "9e23bf80-e747-4632-87c5-102e96e46ac6",
-                    "path": "<Keyboard>/f",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -255,7 +255,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Drop",
+                    "action": "Pickup",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
