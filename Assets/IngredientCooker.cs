@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Cafe.CookingSystem;
@@ -8,25 +9,37 @@ using UnityEngine;
 public class IngredientCooker : MonoBehaviour
 {
     [SerializeField] private Conversion[] conversions;
-    private readonly SortedList<Ingredient, float> _cookingItems = new();
+
+    [SerializeField] private float cookTime;
+    private readonly SortedList<int, Coroutine> _cookingItems = new();
 
     private void OnTriggerEnter(Collider other) // BUG: CAN COOK A BUILT MEAL
     {
-        if (!other.attachedRigidbody) return;
-        Debug.Log("Has RigidBody");
-        if (!other.attachedRigidbody.TryGetComponent<Ingredient>(out var ingredient) ||
+        var rb = other.attachedRigidbody;
+        if (!rb || !rb.TryGetComponent<Ingredient>(out var ingredient) ||
             !conversions.Any(c => c.from.tempName == ingredient.tempName)) return;
         Debug.Log("Added");
-        _cookingItems.Add(ingredient, Time.time);
+        var cr = StartCoroutine(CookItem(ingredient, conversions.First(c => c.from.tempName == ingredient.tempName).to));
+        _cookingItems.Add(ingredient.GetInstanceID(), cr);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.attachedRigidbody) return;
-        if (!other.attachedRigidbody.TryGetComponent<Ingredient>(out var ingredient) ||
-            !_cookingItems.ContainsKey(ingredient)) return;
+        var rb = other.attachedRigidbody;
+        if (!rb || !rb.TryGetComponent<Ingredient>(out var ingredient)) return;
+        var id = ingredient.GetInstanceID();
+        if (!_cookingItems.ContainsKey(id)) return;
         Debug.Log("Removed");
-        _cookingItems.Remove(ingredient);
+        StopCoroutine(_cookingItems[id]);
+        _cookingItems.Remove(id);
+    }
+
+    private IEnumerator CookItem(Ingredient ingredient, Ingredient cookedPrefab)
+    {
+        yield return new WaitForSeconds(cookTime);
+        Debug.Log($"{ingredient.tempName} cooked!");
+        Destroy(ingredient.gameObject);
+        Instantiate(cookedPrefab, ingredient.transform.position + Vector3.up * 0.01f, ingredient.transform.rotation);
     }
 
     private void OnDrawGizmos()
