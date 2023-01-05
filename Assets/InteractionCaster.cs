@@ -34,7 +34,7 @@ public class InteractionCaster : MonoBehaviour
     {
         if (_heldItem) return;
         var cameraTransform = interactionCamera.transform;
-        if (!Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit, 5f)) return;
+        if (!Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit, 2.5f)) return;
         var rb = hit.collider.attachedRigidbody;
         if (!rb || !rb.TryGetComponent<IPickup>(out var pickup)) return;
         pickup.Pickup(itemHolder);
@@ -45,7 +45,7 @@ public class InteractionCaster : MonoBehaviour
     {
         var cameraTransform = interactionCamera.transform;
         var heldPickup = _heldItem.GetComponent<IPickup>();
-        if (!Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit, 5f) ||
+        if (!Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit, 2.5f) ||
             !(Vector3.Angle(hit.normal, Vector3.up) < 70f)) return;
         heldPickup.Drop(hit.point + new Vector3(0f, _heldItem.GetComponentInChildren<Collider>().bounds.extents.y, 0f));
         heldPickup.Drop();
@@ -55,8 +55,8 @@ public class InteractionCaster : MonoBehaviour
     void Interact(InputAction.CallbackContext context)
     {
         var cameraTransform = interactionCamera.transform;
-        if (!Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit, 5f)) ;
-        if (!hit.collider.attachedRigidbody) return;
+        if (!Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit, 5f)) return;
+        if (!hit.collider.attachedRigidbody) return; // BUG: Need to check for Canvas or collider?
 
         if (_heldItem && hit.collider.attachedRigidbody.TryGetComponent<IItemInteractable>(out var itemInteractable) &&
             itemInteractable.InteractWithItem(_heldItem))
