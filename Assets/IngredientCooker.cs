@@ -17,9 +17,10 @@ public class IngredientCooker : MonoBehaviour
     {
         var rb = other.attachedRigidbody;
         if (!rb || !rb.TryGetComponent<Ingredient>(out var ingredient) ||
-            !conversions.Any(c => c.from.tempName == ingredient.tempName)) return;
+            _cookingItems.ContainsKey(ingredient.GetInstanceID()) || !conversions.Any(c => c.from.tempName == ingredient.tempName)) return;
         Debug.Log("Added");
-        var cr = StartCoroutine(CookItem(ingredient, conversions.First(c => c.from.tempName == ingredient.tempName).to));
+        var cr = StartCoroutine(CookItem(ingredient,
+            conversions.First(c => c.from.tempName == ingredient.tempName).to));
         _cookingItems.Add(ingredient.GetInstanceID(), cr);
     }
 
