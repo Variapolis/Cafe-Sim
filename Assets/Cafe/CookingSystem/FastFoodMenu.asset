@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901c19eb5f188264d8a016a0d27b85e8, type: 3}
   m_Name: FastFoodMenu
   m_EditorClassIdentifier: 
-  items: []
+  items:
+  - {fileID: 11400000, guid: 595c03a2bc71a79478e41b2df8ab0c4d, type: 2}
