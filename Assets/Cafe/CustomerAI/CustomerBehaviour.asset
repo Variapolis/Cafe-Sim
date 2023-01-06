@@ -31,8 +31,8 @@ MonoBehaviour:
     Restaurant: {fileID: 0}
     Kiosk: {fileID: 0}
     QueuePoint: {fileID: 0}
-  viewPosition: {x: 1040, y: 710, z: 0}
-  viewScale: {x: 1, y: 1, z: 1}
+  viewPosition: {x: 580, y: 516, z: 0}
+  viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
   references:
     version: 2
     RefIds:
@@ -92,7 +92,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 0196166f2d1b5ad4d9da9723fcfa45a6
-        position: {x: -759, y: 40.000015}
+        position: {x: -759, y: 40}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
           Restaurant: {fileID: 0}
