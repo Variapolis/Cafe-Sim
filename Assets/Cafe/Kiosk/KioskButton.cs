@@ -7,7 +7,7 @@ using Button = UnityEngine.UI.Button;
 [RequireComponent(typeof(Button))]
 public class KioskButton : MonoBehaviour
 {
-    private FoodMenuItem _item;
+    public FoodMenuItem Item;
     public string Name;
 
     public Button Button;
@@ -18,13 +18,6 @@ public class KioskButton : MonoBehaviour
         Button = GetComponent<Button>();
         text = GetComponentInChildren<TMP_Text>();
     }
-
-    private void Awake()
-    {
-        // Button.onClick.AddListener(() => Instantiate(BasketItemPrefab, BasketContent.transform).GetComponent<TMP_Text>().text = $" - {button.Name}\n    $5.99");
-    }
-
-    public void SetItem(FoodMenuItem item) => _item = item;
 
     public void SetColor(Color color) => Button.image.color = color;
 

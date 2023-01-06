@@ -3,21 +3,23 @@
 public class Kiosk : MonoBehaviour
 {
     [SerializeField] private Restaurant restaurant;
-    [SerializeField] private Transform ButtonContent;
+    [SerializeField] private Transform MenuButtonContent;
     [SerializeField] private GameObject ButtonPrefab;
-    [SerializeField] public QueuePoint[] queuePoints;
+    [SerializeField] private SelectedMenuItemDisplay selectedMenuItemDisplay;
+    public QueuePoint[] queuePoints;
     public Restaurant Restaurant => restaurant;
-    
+
     private void Start()
     {
         restaurant.OpenKiosks.Add(this);
         var menu = restaurant.FoodMenu.items;
         foreach (var item in menu)
         {
-            var button = Instantiate(ButtonPrefab, ButtonContent).GetComponent<KioskButton>();
-            button.SetColor(item.Color); 
+            var button = Instantiate(ButtonPrefab, MenuButtonContent).GetComponent<KioskButton>();
+            button.SetColor(item.Color);
             button.SetName(item.name);
-            button.SetItem(item);
+            button.Item = item;
+            button.Button.onClick.AddListener(() => selectedMenuItemDisplay.SelectedItem = button.Item);
         }
     }
 }
