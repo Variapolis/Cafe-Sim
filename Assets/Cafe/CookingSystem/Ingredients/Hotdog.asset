@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34a43e4e8f6a43dcbb2797d9ceb2b183, type: 3}
-  m_Name: Sausage
+  m_Name: Hotdog
   m_EditorClassIdentifier: 
-  name: Sausage
-  color: {r: 1, g: 0.3537736, b: 0.3537736, a: 1}
+  name: Hot Dog
+  color: {r: 0.35294116, g: 1, b: 0.90124846, a: 1}
   Ingredients:
+  - {fileID: 5703076040012100664, guid: 1427f573ea0182c4fa1c717b44f0e1ab, type: 3}
   - {fileID: 1520145774353077499, guid: 9be26d8df5c37e04eb185af876ac1265, type: 3}
+  - {fileID: 8017130908764009120, guid: b56f283283ef9c6459c3bad6e520ce8f, type: 3}
+  - {fileID: 7795931134544042933, guid: e24bec98b1debe7479b2d38a21397db7, type: 3}
