@@ -1,18 +1,23 @@
-using System.Collections;
 using System.Collections.Generic;
+using Cafe.CookingSystem;
+using TMPro;
 using UnityEngine;
 
 public class Table : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private TMP_Text tmpText;
 
-    // Update is called once per frame
-    void Update()
+    private int _tableNumber;
+    public int TableNumber
     {
-        
+        get => _tableNumber;
+        set
+        {
+            _tableNumber = value;
+            tmpText.text = $"Table {value}";
+        }
     }
+    public FoodTray FoodTray;
+    public Chair[] Chairs;
+    public bool IsOccupied;
 }

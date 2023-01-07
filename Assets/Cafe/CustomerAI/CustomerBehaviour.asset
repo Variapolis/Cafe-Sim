@@ -25,14 +25,23 @@ MonoBehaviour:
   - rid: 714596903663173727
   - rid: 714596903663173742
   - rid: 714596915198820357
+  - rid: 714596953919848464
+  - rid: 714596953919848539
+  - rid: 714596953919848581
+  - rid: 714596953919848583
+  - rid: 714596971698716677
+  - rid: 714596971698716678
   treeState: 0
   blackboard:
     moveToPosition: {x: -19.54, y: 0, z: -1.59}
     Restaurant: {fileID: 0}
     Kiosk: {fileID: 0}
     QueuePoint: {fileID: 0}
-  viewPosition: {x: 580, y: 516, z: 0}
-  viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
+    Table: {fileID: 0}
+    Chair: {fileID: 0}
+    EatTime: 5
+  viewPosition: {x: 1020, y: 370, z: 0}
+  viewScale: {x: 0.8695652, y: 0.8695652, z: 1}
   references:
     version: 2
     RefIds:
@@ -48,6 +57,9 @@ MonoBehaviour:
           Restaurant: {fileID: 0}
           Kiosk: {fileID: 0}
           QueuePoint: {fileID: 0}
+          Table: {fileID: 0}
+          Chair: {fileID: 0}
+          EatTime: 0
         description: 
         drawGizmos: 0
         child:
@@ -64,6 +76,9 @@ MonoBehaviour:
           Restaurant: {fileID: 0}
           Kiosk: {fileID: 0}
           QueuePoint: {fileID: 0}
+          Table: {fileID: 0}
+          Chair: {fileID: 0}
+          EatTime: 0
         description: 
         drawGizmos: 0
         children:
@@ -75,44 +90,55 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 9ee2e518ee9d5314fa6e9a2568f7104f
-        position: {x: -666.5375, y: -114}
+        position: {x: -812.1675, y: -113.999916}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
           Restaurant: {fileID: 0}
           Kiosk: {fileID: 0}
           QueuePoint: {fileID: 0}
+          Table: {fileID: 0}
+          Chair: {fileID: 0}
+          EatTime: 0
         description: 
         drawGizmos: 0
         children:
         - rid: 714596903663173701
         - rid: 714596903663173709
+        - rid: 714596971698716677
+        - rid: 714596971698716678
     - rid: 714596903663173701
       type: {class: Dice, ns: , asm: Assembly-CSharp}
       data:
         state: 0
         started: 0
         guid: 0196166f2d1b5ad4d9da9723fcfa45a6
-        position: {x: -759, y: 40}
+        position: {x: -1192.15, y: 39.999996}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
           Restaurant: {fileID: 0}
           Kiosk: {fileID: 0}
           QueuePoint: {fileID: 0}
+          Table: {fileID: 0}
+          Chair: {fileID: 0}
+          EatTime: 0
         description: 
         drawGizmos: 0
-        chance: 15
+        chance: 50
     - rid: 714596903663173709
       type: {class: GetRandomPointOfInterest, ns: , asm: Assembly-CSharp}
       data:
         state: 0
         started: 0
         guid: 4535b1c78e201c447b3f422bf6f8f916
-        position: {x: -609, y: 40}
+        position: {x: -1042.15, y: 39.999996}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
           Restaurant: {fileID: 0}
           Kiosk: {fileID: 0}
           QueuePoint: {fileID: 0}
+          Table: {fileID: 0}
+          Chair: {fileID: 0}
+          EatTime: 0
         description: 
         drawGizmos: 0
     - rid: 714596903663173712
@@ -121,12 +147,15 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 6badd503fedacc540ace10b88a68b0e2
-        position: {x: -168.35501, y: 39.999973}
+        position: {x: -389.99988, y: 40}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
           Restaurant: {fileID: 0}
           Kiosk: {fileID: 0}
           QueuePoint: {fileID: 0}
+          Table: {fileID: 0}
+          Chair: {fileID: 0}
+          EatTime: 0
         description: 
         drawGizmos: 0
     - rid: 714596903663173713
@@ -141,12 +170,19 @@ MonoBehaviour:
           Restaurant: {fileID: 0}
           Kiosk: {fileID: 0}
           QueuePoint: {fileID: 0}
+          Table: {fileID: 0}
+          Chair: {fileID: 0}
+          EatTime: 0
         description: 
         drawGizmos: 0
         children:
         - rid: 714596903663173712
         - rid: 714596903663173742
         - rid: 714596915198820357
+        - rid: 714596953919848464
+        - rid: 714596953919848539
+        - rid: 714596953919848581
+        - rid: 714596953919848583
     - rid: 714596903663173727
       type: {class: Repeat, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -159,6 +195,9 @@ MonoBehaviour:
           Restaurant: {fileID: 0}
           Kiosk: {fileID: 0}
           QueuePoint: {fileID: 0}
+          Table: {fileID: 0}
+          Chair: {fileID: 0}
+          EatTime: 0
         description: 
         drawGizmos: 0
         child:
@@ -171,12 +210,15 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 7dae033933305e84c9dd604397912c56
-        position: {x: -2.3549428, y: 39.999973}
+        position: {x: -223.99988, y: 40}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
           Restaurant: {fileID: 0}
           Kiosk: {fileID: 0}
           QueuePoint: {fileID: 0}
+          Table: {fileID: 0}
+          Chair: {fileID: 0}
+          EatTime: 0
         description: 
         drawGizmos: 0
     - rid: 714596915198820357
@@ -185,11 +227,117 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: eaec5216f3e17384aa41c17f16ec3163
-        position: {x: 148.0001, y: 40.000027}
+        position: {x: -73.99997, y: 40}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
           Restaurant: {fileID: 0}
           Kiosk: {fileID: 0}
           QueuePoint: {fileID: 0}
+          Table: {fileID: 0}
+          Chair: {fileID: 0}
+          EatTime: 0
+        description: 
+        drawGizmos: 0
+    - rid: 714596953919848464
+      type: {class: GoToTable, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: a85400708fee0034a905de8a6e319131
+        position: {x: 76.00003, y: 40}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+          Restaurant: {fileID: 0}
+          Kiosk: {fileID: 0}
+          QueuePoint: {fileID: 0}
+          Table: {fileID: 0}
+          Chair: {fileID: 0}
+          EatTime: 0
+        description: 
+        drawGizmos: 0
+    - rid: 714596953919848539
+      type: {class: WaitForOrder, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 6a0647e1425a5b54bb5b093c0aef1afa
+        position: {x: 226.00006, y: 40}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+          Restaurant: {fileID: 0}
+          Kiosk: {fileID: 0}
+          QueuePoint: {fileID: 0}
+          Table: {fileID: 0}
+          Chair: {fileID: 0}
+          EatTime: 0
+        description: 
+        drawGizmos: 0
+    - rid: 714596953919848581
+      type: {class: Eat, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: f9fa41d7645fc434cba6c4b05aaad646
+        position: {x: 376.00006, y: 39.99999}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+          Restaurant: {fileID: 0}
+          Kiosk: {fileID: 0}
+          QueuePoint: {fileID: 0}
+          Table: {fileID: 0}
+          Chair: {fileID: 0}
+          EatTime: 0
+        description: 
+        drawGizmos: 0
+    - rid: 714596953919848583
+      type: {class: Exit, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 19eab35df5753dd42ad756b5a53f47ff
+        position: {x: 526, y: 39.99999}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+          Restaurant: {fileID: 0}
+          Kiosk: {fileID: 0}
+          QueuePoint: {fileID: 0}
+          Table: {fileID: 0}
+          Chair: {fileID: 0}
+          EatTime: 0
+        description: 
+        drawGizmos: 0
+    - rid: 714596971698716677
+      type: {class: Dice, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: f3833043757dbc74f8b301e595ffd722
+        position: {x: -847.15, y: 39.999996}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+          Restaurant: {fileID: 0}
+          Kiosk: {fileID: 0}
+          QueuePoint: {fileID: 0}
+          Table: {fileID: 0}
+          Chair: {fileID: 0}
+          EatTime: 0
+        description: 
+        drawGizmos: 0
+        chance: 25
+    - rid: 714596971698716678
+      type: {class: Exit, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: fe6dbf4621055ac4bbe898d378c8570b
+        position: {x: -696.99994, y: 40}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+          Restaurant: {fileID: 0}
+          Kiosk: {fileID: 0}
+          QueuePoint: {fileID: 0}
+          Table: {fileID: 0}
+          Chair: {fileID: 0}
+          EatTime: 0
         description: 
         drawGizmos: 0
