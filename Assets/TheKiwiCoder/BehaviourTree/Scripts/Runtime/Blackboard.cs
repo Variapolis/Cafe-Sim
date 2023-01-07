@@ -15,6 +15,9 @@ namespace TheKiwiCoder {
         public Restaurant Restaurant;
         public Kiosk Kiosk;
         public QueuePoint QueuePoint;
+        public Table Table;
+        public Chair Chair;
         public readonly List<FoodMenuItem> Order = new();
+        public float EatTime;
     }
 }

@@ -16,18 +16,18 @@ public class IngredientCooker : MonoBehaviour
     private void OnTriggerEnter(Collider other) // BUG: CAN COOK A BUILT MEAL
     {
         var rb = other.attachedRigidbody;
-        if (!rb || !rb.TryGetComponent<Ingredient>(out var ingredient) ||
-            _cookingItems.ContainsKey(ingredient.GetInstanceID()) || !conversions.Any(c => c.from.tempName == ingredient.tempName)) return;
+        if (!rb || !rb.TryGetComponent<FoodItem>(out var ingredient) ||
+            _cookingItems.ContainsKey(ingredient.GetInstanceID()) || !conversions.Any(c => c.from.IngredientName == ingredient.IngredientName)) return;
         Debug.Log("Added");
         var cr = StartCoroutine(CookItem(ingredient,
-            conversions.First(c => c.from.tempName == ingredient.tempName).to));
+            conversions.First(c => c.from.IngredientName == ingredient.IngredientName).to));
         _cookingItems.Add(ingredient.GetInstanceID(), cr);
     }
 
     private void OnTriggerExit(Collider other)
     {
         var rb = other.attachedRigidbody;
-        if (!rb || !rb.TryGetComponent<Ingredient>(out var ingredient)) return;
+        if (!rb || !rb.TryGetComponent<FoodItem>(out var ingredient)) return;
         var id = ingredient.GetInstanceID();
         if (!_cookingItems.ContainsKey(id)) return;
         Debug.Log("Removed");
@@ -35,12 +35,12 @@ public class IngredientCooker : MonoBehaviour
         _cookingItems.Remove(id);
     }
 
-    private IEnumerator CookItem(Ingredient ingredient, Ingredient cookedPrefab)
+    private IEnumerator CookItem(FoodItem foodItem, FoodItem cookedPrefab)
     {
         yield return new WaitForSeconds(cookTime);
-        Debug.Log($"{ingredient.tempName} cooked!");
-        Destroy(ingredient.gameObject);
-        Instantiate(cookedPrefab, ingredient.transform.position + Vector3.up * 0.01f, ingredient.transform.rotation);
+        Debug.Log($"{foodItem.IngredientName} cooked!");
+        Destroy(foodItem.gameObject);
+        Instantiate(cookedPrefab, foodItem.transform.position + Vector3.up * 0.01f, foodItem.transform.rotation);
     }
 
     private void OnDrawGizmos()
@@ -52,7 +52,7 @@ public class IngredientCooker : MonoBehaviour
     [Serializable]
     private struct Conversion
     {
-        public Ingredient from;
-        public Ingredient to;
+        public FoodItem from;
+        public FoodItem to;
     }
 }
