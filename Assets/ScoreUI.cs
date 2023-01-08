@@ -1,0 +1,20 @@
+using TMPro;
+using UnityEngine;
+
+public class ScoreUI : MonoBehaviour
+{
+    [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text timerText;
+    [SerializeField] private Restaurant restaurant;
+    private const float time = 600;
+    private float startTime;
+    void Start() => startTime = Time.time;
+
+    // Update is called once per frame
+    void Update()
+    {
+        var timeSince = time - (Time.time - startTime);
+        timerText.text = $"Time Left: {Mathf.Floor(timeSince / 60)}:{Mathf.Floor(timeSince % 60).ToString("00")}";
+        scoreText.text = $"Score: {restaurant.score}";
+    }
+}
