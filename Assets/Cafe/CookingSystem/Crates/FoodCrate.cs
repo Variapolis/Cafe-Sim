@@ -17,13 +17,13 @@ namespace Cafe.CookingSystem.Crates
 
         public bool Interact()
         {
-            if (count <= 0)
-            {
-                Destroy(transform);
-                return false;
-            }
+            // if (count <= 0)
+            // {
+            //     Destroy(transform);
+            //     return false;
+            // }
             Instantiate(item, SpawnPoint, Quaternion.identity);
-            count--;
+            // count--;
             return true;
         }
 
