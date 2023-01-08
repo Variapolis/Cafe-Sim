@@ -34,19 +34,15 @@ public class WaitInLine : ActionNode
             case null:
                 return State.Failure;
             case 0:
-                if (Vector3.Distance(context.transform.position, blackboard.QueuePoint.transform.position) > context.agent.stoppingDistance &&
-                    context.agent.pathStatus == NavMeshPathStatus.PathComplete)
-                    return State.Running;
-                return State.Success;
+                return Vector3.Distance(context.transform.position, blackboard.QueuePoint.transform.position) > context.agent.stoppingDistance ? State.Running : State.Success;
             default:
                 var nextPosition = blackboard.Kiosk.queuePoints[queuePosition.Value - 1];
-                if (!nextPosition.IsOccupied)
-                {
-                    blackboard.QueuePoint.IsOccupied = false;
-                    blackboard.QueuePoint = nextPosition;
-                    blackboard.QueuePoint.IsOccupied = true;
-                    context.agent.destination = nextPosition.transform.position;
-                }
+                if (nextPosition.IsOccupied) return State.Running;
+                blackboard.QueuePoint.IsOccupied = false;
+                queuePosition--;
+                blackboard.QueuePoint = nextPosition;
+                blackboard.QueuePoint.IsOccupied = true;
+                context.agent.destination = blackboard.QueuePoint.transform.position;
                 return State.Running;
         }
     }
