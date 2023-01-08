@@ -20,7 +20,6 @@ public class SelectedMenuItemDisplay : MonoBehaviour
     private string ItemToString(FoodMenuItem item)
     {
         string text = $"{item.Name}\n";
-        foreach (var ingredient in item.Ingredients) text += $"\t{ingredient.tempName}\n";
         return text;
     }
 }
