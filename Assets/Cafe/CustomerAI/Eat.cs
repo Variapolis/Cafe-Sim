@@ -57,6 +57,7 @@ public class Eat : ActionNode
         context.physics.isKinematic = false;
         context.physics.detectCollisions = true;
         context.agent.enabled = true;
+        blackboard.Table.IsOccupied = false;
         context.gameObject.GetComponentInChildren<Animator>().SetTrigger("Stand");
         context.transform.position = blackboard.Chair.WalkToPosition;
     }
