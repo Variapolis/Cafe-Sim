@@ -8,7 +8,7 @@ public class ScoreUI : MonoBehaviour
     [SerializeField] private TMP_Text timerText;
     [SerializeField] private Restaurant restaurant;
     private const int scoreNeeded = 10;
-    private const float time = 300;
+    private const float time = 600;
     private float startTime;
     void Start() => startTime = Time.time;
 
