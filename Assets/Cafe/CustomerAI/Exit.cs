@@ -10,7 +10,7 @@ public class Exit : ActionNode
     protected override void OnStart()
     {
         var exits = AILocationsManager.Instance.Exits;
-        context.agent.destination = exits[Random.Range(0, exits.Length - 1)].position;
+        context.agent.destination = exits[Random.Range(0, exits.Length)].position;
     }
 
     protected override void OnStop()

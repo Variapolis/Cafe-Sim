@@ -7,7 +7,7 @@ public class GetRandomPointOfInterest : ActionNode
     protected override void OnStart()
     {
         var pois = AILocationsManager.Instance.PointsOfInterest;
-        var poi = pois[Random.Range(0, pois.Length - 1)];
+        var poi = pois[Random.Range(0, pois.Length)];
         context.agent.destination = poi.position;
     }
 

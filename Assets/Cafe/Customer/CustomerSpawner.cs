@@ -13,7 +13,7 @@ public class CustomerSpawner : MonoBehaviour
         while (true)
         {
             if (CustomerTracker.Total > 20) continue;
-            Instantiate(customerPrefabs[Random.Range(0, customerPrefabs.Length - 1)], transform.position, transform.rotation);
+            Instantiate(customerPrefabs[Random.Range(0, customerPrefabs.Length)], transform.position, transform.rotation);
             yield return new WaitForSeconds(2f);
         }
     }

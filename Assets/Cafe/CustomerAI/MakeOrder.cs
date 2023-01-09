@@ -9,7 +9,7 @@ public class MakeOrder : ActionNode
     protected override void OnStart()
     {
         var menu = blackboard.Restaurant.FoodMenu.items;
-        for (int i = 1; i <= Random.Range(1,5); i++) blackboard.Order.Add(menu[Random.Range(0, menu.Length - 1)]);
+        for (int i = 1; i <= Random.Range(1,5); i++) blackboard.Order.Add(menu[Random.Range(0, menu.Length)]);
         Debug.Log(blackboard.Order.ToArray().ToCommaSeparatedString());
         _speechBubbleController = context.gameObject.GetComponent<SpeechBubbleController>();
         _speechBubbleController.Order = blackboard.Order;

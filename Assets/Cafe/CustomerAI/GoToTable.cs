@@ -6,7 +6,7 @@ public class GoToTable : ActionNode
 {
     protected override void OnStart()
     {
-        blackboard.Chair = blackboard.Table.Chairs[Random.Range(0, blackboard.Table.Chairs.Length - 1)];
+        blackboard.Chair = blackboard.Table.Chairs[Random.Range(0, blackboard.Table.Chairs.Length)];
         context.agent.destination = blackboard.Chair.WalkToPosition;
     }
 

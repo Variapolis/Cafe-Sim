@@ -15,12 +15,12 @@ public class GetRandomRestaurant : ActionNode
     protected override State OnUpdate() {
         var restaurants = AILocationsManager.Instance.Restaurants;
         if (restaurants.Count == 0) return State.Failure;
-        var restaurant = restaurants[Random.Range(0, restaurants.Count - 1)];
+        var restaurant = restaurants[Random.Range(0, restaurants.Count)];
         if (!restaurant.IsOpen || !restaurant.HasFreeTables(out var table, out var tableNumber)) return State.Failure;
         context.gameObject.GetComponent<SpeechBubbleController>().TableNumber = tableNumber;
         blackboard.Restaurant = restaurant;
         blackboard.Table = table;
-        var kiosk = restaurant.OpenKiosks[Random.Range(0, restaurant.OpenKiosks.Count - 1)];
+        var kiosk = restaurant.OpenKiosks[Random.Range(0, restaurant.OpenKiosks.Count)];
         blackboard.Kiosk = kiosk;
         foreach (var queuePoint in kiosk.queuePoints)
             if (!queuePoint.IsOccupied)
