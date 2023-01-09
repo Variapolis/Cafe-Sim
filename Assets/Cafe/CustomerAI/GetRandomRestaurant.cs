@@ -17,7 +17,6 @@ public class GetRandomRestaurant : ActionNode
         if (restaurants.Count == 0) return State.Failure;
         var restaurant = restaurants[Random.Range(0, restaurants.Count - 1)];
         if (!restaurant.IsOpen || !restaurant.HasFreeTables(out var table, out var tableNumber)) return State.Failure;
-        table.IsOccupied = true;
         context.gameObject.GetComponent<SpeechBubbleController>().TableNumber = tableNumber;
         blackboard.Restaurant = restaurant;
         blackboard.Table = table;
@@ -29,6 +28,7 @@ public class GetRandomRestaurant : ActionNode
                 context.agent.destination = queuePoint.transform.position;
                 blackboard.QueuePoint = queuePoint;
                 blackboard.QueuePoint.IsOccupied = true;
+                table.IsOccupied = true;
                 return State.Success;
             }
         return State.Failure;

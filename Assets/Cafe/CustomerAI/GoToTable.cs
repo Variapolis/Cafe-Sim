@@ -33,7 +33,6 @@ public class GoToTable : ActionNode
         context.gameObject.GetComponentInChildren<Animator>().SetTrigger("Sit");
         var transform = context.transform;
         transform.position = blackboard.Chair.SitPosition;
-        transform.rotation = Quaternion.Euler(transform.eulerAngles.x,
-            Vector3.Angle(transform.position, blackboard.Table.transform.position), transform.eulerAngles.z);
+        transform.rotation = Quaternion.Euler(transform.eulerAngles.x, blackboard.Chair.SitRotation.eulerAngles.y , transform.eulerAngles.z);
     }
 }

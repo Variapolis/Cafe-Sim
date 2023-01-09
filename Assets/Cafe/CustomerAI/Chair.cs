@@ -3,10 +3,11 @@
 public class Chair : MonoBehaviour
 {
     [SerializeField] private Vector3 walkToPosition;
-    [SerializeField] private Vector3 sitPosition;
+    [SerializeField] private Transform sitTransform;
 
     public Vector3 WalkToPosition => transform.position + walkToPosition;
-    public Vector3 SitPosition => transform.position + sitPosition;
+    public Vector3 SitPosition => sitTransform.position;
+    public Quaternion SitRotation => sitTransform.rotation;
     
     private void OnDrawGizmos()
     {
@@ -18,5 +19,8 @@ public class Chair : MonoBehaviour
         Gizmos.DrawLine(SitPosition + Vector3.up * 0.01f, SitPosition - Vector3.up * 0.01f);
         Gizmos.DrawLine(SitPosition + Vector3.left * 0.01f, SitPosition - Vector3.left * 0.01f);
         Gizmos.DrawLine(SitPosition + Vector3.forward * 0.01f, SitPosition - Vector3.forward * 0.01f);
+        
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(SitPosition, sitTransform.forward);
     }
 }
