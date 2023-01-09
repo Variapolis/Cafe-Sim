@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Hot Dog
   color: {r: 0.35294116, g: 1, b: 0.90124846, a: 1}
-  Ingredient: {fileID: 1520145774353077499, guid: 9be26d8df5c37e04eb185af876ac1265, type: 3}
+  Ingredient: {fileID: 7795931134544042933, guid: e24bec98b1debe7479b2d38a21397db7, type: 3}

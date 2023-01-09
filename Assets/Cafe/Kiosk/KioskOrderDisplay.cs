@@ -22,8 +22,10 @@ public class KioskOrderDisplay : MonoBehaviour
         sendOrderButton.onClick.AddListener(() =>
         {
             chooseTableWindow.SetActive(false);
-            ordersScreen.AddOrder(tableSelection.text, _order);
+            ordersScreen.AddOrder($"Table {tableSelection.text}", _order);
             tableSelection.text = string.Empty;
+            _order.Clear();
+            foreach (RectTransform order in orderContent) Destroy(order.gameObject);
         });
     }
 

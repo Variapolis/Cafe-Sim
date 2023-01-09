@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34a43e4e8f6a43dcbb2797d9ceb2b183, type: 3}
-  m_Name: Cheese Burger
+  m_Name: Soda
   m_EditorClassIdentifier: 
-  _name: Cheese Burger
-  color: {r: 0.35294116, g: 1, b: 0.5132724, a: 1}
-  Ingredient: {fileID: 3158413836551723814, guid: fac3aad6bdcfcac4ea37a76a24187414, type: 3}
+  _name: Soda
+  color: {r: 0.79193646, g: 0.35294116, b: 1, a: 1}
+  Ingredient: {fileID: 5362587868270850110, guid: 96349e682dbbe3946ac691899ea8f40f, type: 3}

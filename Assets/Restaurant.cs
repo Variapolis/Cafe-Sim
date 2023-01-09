@@ -13,14 +13,16 @@ public class Restaurant : MonoBehaviour
     // public List<Kiosk> ClosedKiosks = new();
     public FoodMenu FoodMenu => foodMenu;
 
-    public bool HasFreeTables(out Table availableTable)
+    public bool HasFreeTables(out Table availableTable, out int tableNumber)
     {
         availableTable = null;
+        tableNumber = -1;
         if (Tables.Length == 0) return false;
-        foreach (var table in Tables)
-            if (!table.IsOccupied)
+        for (int i = 0; i < Tables.Length; i++)
+            if (!Tables[i].IsOccupied)
             {
-                availableTable = table;
+                availableTable = Tables[i];
+                tableNumber = i + 1;
                 return true;
             }
         return false;

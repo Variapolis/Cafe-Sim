@@ -16,8 +16,9 @@ public class GetRandomRestaurant : ActionNode
         var restaurants = AILocationsManager.Instance.Restaurants;
         if (restaurants.Count == 0) return State.Failure;
         var restaurant = restaurants[Random.Range(0, restaurants.Count - 1)];
-        if (!restaurant.IsOpen || !restaurant.HasFreeTables(out var table)) return State.Failure;
+        if (!restaurant.IsOpen || !restaurant.HasFreeTables(out var table, out var tableNumber)) return State.Failure;
         table.IsOccupied = true;
+        context.gameObject.GetComponent<SpeechBubbleController>().TableNumber = tableNumber;
         blackboard.Restaurant = restaurant;
         blackboard.Table = table;
         var kiosk = restaurant.OpenKiosks[Random.Range(0, restaurant.OpenKiosks.Count - 1)];

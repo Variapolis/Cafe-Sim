@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 namespace Cafe.CookingSystem.Crates
@@ -6,14 +7,17 @@ namespace Cafe.CookingSystem.Crates
     [RequireComponent(typeof(Rigidbody))]
     public class FoodCrate : MonoBehaviour, IInteractable
     {
-        [SerializeField] private GameObject item;
+        [SerializeField] private FoodItem item;
         [SerializeField] private Vector3 spawnPointOffset;
+        [SerializeField] private TMP_Text _tmpText;
         [SerializeField] private int count;
         [SerializeField] private Rigidbody _rigidbody;
 
         private Vector3 SpawnPoint => transform.position + spawnPointOffset;
 
         private void Reset() => _rigidbody = GetComponent<Rigidbody>();
+
+        private void Start() => _tmpText.text = item.IngredientName;
 
         public bool Interact()
         {

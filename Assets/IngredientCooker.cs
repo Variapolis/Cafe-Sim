@@ -11,6 +11,7 @@ public class IngredientCooker : MonoBehaviour
     [SerializeField] private Conversion[] conversions;
 
     [SerializeField] private float cookTime;
+    [SerializeField] private AudioSource audioSource;
     private readonly SortedList<int, Coroutine> _cookingItems = new();
 
     private void OnTriggerEnter(Collider other) // BUG: CAN COOK A BUILT MEAL
@@ -37,10 +38,12 @@ public class IngredientCooker : MonoBehaviour
 
     private IEnumerator CookItem(FoodItem foodItem, FoodItem cookedPrefab)
     {
+        audioSource.Play();
         yield return new WaitForSeconds(cookTime);
         Debug.Log($"{foodItem.IngredientName} cooked!");
         Destroy(foodItem.gameObject);
         Instantiate(cookedPrefab, foodItem.transform.position + Vector3.up * 0.01f, foodItem.transform.rotation);
+        audioSource.Stop();
     }
 
     private void OnDrawGizmos()
