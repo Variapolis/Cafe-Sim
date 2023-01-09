@@ -5,6 +5,9 @@ using UnityEngine;
 public class Restaurant : MonoBehaviour
 {
     [SerializeField] private FoodMenu foodMenu;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip praiseClip;
+    [SerializeField] private AudioClip complainClip;
     public bool IsOpen => OpenKiosks.Count > 0;
     public Table[] Tables;
     public int score;
@@ -28,16 +31,20 @@ public class Restaurant : MonoBehaviour
         return false;
     }
 
-    public void Complain(string reason)
+    public void Complain(string reason, int orderSize)
     {
         Debug.Log("Complain");
-        score--;
+        audioSource.clip = complainClip;
+        audioSource.Play();
+        score -= orderSize;
     }
 
-    public void Praise()
+    public void Praise(int orderSize)
     {
         Debug.Log("Praise");
-        score++;
+        audioSource.clip = praiseClip;
+        audioSource.Play();
+        score += orderSize;
     }
     
     private void Start()

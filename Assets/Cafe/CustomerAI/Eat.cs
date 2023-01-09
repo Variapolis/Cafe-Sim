@@ -38,16 +38,16 @@ public class Eat : ActionNode
     {
         if (blackboard.Table.FoodTray.FoodItems.Count != blackboard.Order.Count)
         {
-            blackboard.Restaurant.Complain("My order was incorrect!");
+            blackboard.Restaurant.Complain("My order was incorrect!", blackboard.Order.Count);
             return;
         }
         foreach (var t in blackboard.Order)
             if (blackboard.Table.FoodTray.FoodItems.All(f => f.IngredientName != t.Ingredient.IngredientName))
             {
-                blackboard.Restaurant.Complain("My order was incorrect!");
+                blackboard.Restaurant.Complain("My order was incorrect!", blackboard.Order.Count);
                 return;
             }
-        blackboard.Restaurant.Praise();
+        blackboard.Restaurant.Praise(blackboard.Order.Count);
     }
 
     private void Stand()
